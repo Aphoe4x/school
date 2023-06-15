@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+  header("Location: pages-login.php");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +14,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - School Management System</title>
+  <title>Dashboard - School management system</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,6 +48,7 @@
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -210,7 +220,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/Aphoe.jpg" alt="Profile" /*class="rounded-circle" * />
+            <img src="assets/img/Aphoe.jpg" alt="Profile" >
             <span class="d-none d-md-block dropdown-toggle ps-2">Afolabi Abdulbasit</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -229,7 +239,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="logout.php">
+              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Log Out</span>
               </a>
@@ -241,179 +251,4 @@
       </ul>
     </nav><!-- End Icons Navigation -->
 
-  </header><!-- End Header -->\
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="index.php">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="user.php">
-          <i class="bi bi-person"></i>
-          <span>Users</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-  <main id="main" class="main">
-
-
-
-
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title" style="font-size: 30px;">Users<button type="button" class="btn btn-primary" style="float:right; " data-bs-toggle="modal" data-bs-target="#scrollingModal">
-                  Add User
-                </button></h5>
-
-              <section class="section">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <!--  Modal -->
-                    <div class="modal fade" id="scrollingModal" tabindex="-1">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Add User</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <h5 class="card-title">Provide User Details</h5>
-
-                            <!-- Floating Labels Form -->
-                            <form class="row g-3">
-                              <div class="col-md-12">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" required id="floatingName" placeholder="Your Name">
-                                  <label for="floatingName">Your Name</label>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-floating">
-                                  <input type="email" class="form-control" id="floatingEmail" placeholder="Your Email">
-                                  <label for="floatingEmail">Your Email</label>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-floating">
-                                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                                  <label for="floatingPassword">Password</label>
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="form-floating">
-                                  <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
-                                  <label for="floatingTextarea">Address</label>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="col-md-12">
-                                  <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingCity" placeholder="City">
-                                    <label for="floatingCity">City</label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                  <select class="form-select" id="floatingSelect" aria-label="State">
-                                    <option selected>New York</option>
-                                    <option value="1">Oregon</option>
-                                    <option value="2">DC</option>
-                                  </select>
-                                  <label for="floatingSelect">State</label>
-                                </div>
-                              </div>
-                              <div class="col-md-2">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingZip" placeholder="Zip">
-                                  <label for="floatingZip">Zip</label>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary">Submit</button>
-                          </div>
-                        </div>
-                        </form><!-- End floating Labels Form -->
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </section>
-            </div><!-- End Page Title -->
-            <!-- Table with stripped rows -->
-            <table class="table datatable">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Position</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Start Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Aphoe</td>
-                  <td>Super Admin</td>
-                  <td>22</td>
-                  <td>2016-05-25</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Bridie Kessler</td>
-                  <td>Admin</td>
-                  <td>35</td>
-                  <td>2014-12-05</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Ashleigh Langosh</td>
-                  <td>Student</td>
-                  <td>45</td>
-                  <td>2011-08-12</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Angus Grady</td>
-                  <td>Lecturer</td>
-                  <td>34</td>
-                  <td>2012-06-11</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Raheem Lehner</td>
-                  <td>Vice Chancellor</td>
-                  <td>47</td>
-                  <td>2011-04-19</td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- End Table with stripped rows -->
-
-          </div>
-        </div>
-
-      </div>
-      </div>
-    </section>
+  </header><!-- End Header -->

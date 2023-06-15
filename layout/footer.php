@@ -1,5 +1,5 @@
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer" style="position:absolute; ; left:30%;">
+<footer id="footer" class="footer"  >
     <div class="copyright">
       &copy; Copyright <strong><span>School management system</span></strong>. All Rights Reserved
     </div>

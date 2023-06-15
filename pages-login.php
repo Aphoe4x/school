@@ -27,11 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Create a database connection
     $conn = new mysqli($servername, $db_username, $db_password, $database);
 
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     // Query the database to check if the user exists
     $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
@@ -56,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
-<?php include 'inc/login/login.php'; ?>
+<?php include 'layout/login.php'; ?>
 
 
 <?php

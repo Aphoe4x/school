@@ -4,10 +4,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve user input from the signup form
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
 
     // Validate and sanitize the user input 
     $username = htmlspecialchars($username);
     $password = htmlspecialchars($password);
+    $name = htmlspecialchars($name);
+    $email = htmlspecialchars($email);
 
     // Hash the password securely
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -25,6 +29,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check the connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
+    }
+    
+    // Retrieve the submitted username and email from the sign-up form
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+
+    // Check if the username exists
+    $usernameQuery = "SELECT * FROM users WHERE username = '$username'";
+    $usernameResult = $conn->query($usernameQuery);
+    if ($usernameResult->num_rows > 0) {
+        // Username already exists, handle the error
+        echo "Username already taken.";
+        // You may redirect the user back to the sign-up page or display an error message.
+        exit;
+    }
+
+    // Check if the email exists
+    $emailQuery = "SELECT * FROM users WHERE email = '$email'";
+    $emailResult = $conn->query($emailQuery);
+    if ($emailResult->num_rows > 0) {
+        // Email already exists, handle the error
+        echo "Email already in use.";
+        // You may redirect the user back to the sign-up page or display an error message.
+        exit;
     }
 
     // Check if the username already exists in the database
@@ -53,4 +83,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<?php include 'inc/register/register.php'; ?>
+<?php include 'layout/register.php'; ?>
