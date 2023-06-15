@@ -1,7 +1,8 @@
 <?php
+var_dump($_POST);
 // Retrieve form data
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
+$first_name = $_POST['firstname'];
+$last_name = $_POST['lastname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $address = $_POST['address'];
@@ -27,7 +28,7 @@ if ($conn->connect_error) {
 }
 
 // Insert the user data into the database
-$insertQuery = "INSERT INTO users (first_name, last_name, email, password, address, city, state,)
+$insertQuery = "INSERT INTO users (first_name, last_name, email, password, address, city, state)
                 VALUES ('$first_name', '$last_name', '$email', '$password', '$address', '$city', '$state')";
 
                 var_dump($insertQuery);
